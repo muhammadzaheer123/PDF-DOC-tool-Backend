@@ -1,10 +1,11 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { BullModule } from "@nestjs/bullmq";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import Redis from "ioredis";
 import { QUEUE_NAMES } from "@/common/constants/queues.constants";
 import { AppConfig } from "@/config/configuration";
 
+@Global()
 @Module({
   imports: [
     BullModule.forRootAsync({
@@ -15,7 +16,9 @@ import { AppConfig } from "@/config/configuration";
 
         if (redisConfig.url) {
           return {
-            connection: new Redis(redisConfig.url, { maxRetriesPerRequest: null }),
+            connection: new Redis(redisConfig.url, {
+              maxRetriesPerRequest: null,
+            }),
           };
         }
 
@@ -29,7 +32,10 @@ import { AppConfig } from "@/config/configuration";
         };
       },
     }),
-    BullModule.registerQueue({ name: QUEUE_NAMES.PDF }, { name: QUEUE_NAMES.AI }),
+    BullModule.registerQueue(
+      { name: QUEUE_NAMES.PDF },
+      { name: QUEUE_NAMES.AI },
+    ),
   ],
   exports: [BullModule],
 })

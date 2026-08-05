@@ -1,7 +1,8 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { STORAGE_SERVICE } from "@/modules/storage/storage.interface";
 import { LocalDiskStorageService } from "@/modules/storage/local-disk-storage.service";
 
+@Global()
 @Module({
   providers: [
     {

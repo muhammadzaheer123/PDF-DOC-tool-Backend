@@ -17,5 +17,5 @@ export class AiFileOptionsDto {
 export class AiPromptDto {
   @IsString()
   @Length(1, 4000)
-  prompt: string;
+  prompt!: string;
 }

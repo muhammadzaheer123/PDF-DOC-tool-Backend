@@ -6,32 +6,37 @@ export type JobDocument = Job & Document;
 
 @Schema({ timestamps: true })
 export class Job {
-  @Prop({ required: true, unique: true })
-  jobId: string;
+  @Prop({ type: String, required: true, unique: true })
+  jobId!: string;
 
-  @Prop({ required: true })
-  toolSlug: string;
+  @Prop({ type: String, required: true })
+  toolSlug!: string;
 
-  @Prop({ required: true, enum: ["queued", "processing", "completed", "failed"], default: "queued" })
-  status: JobLifecycleStatus;
+  @Prop({
+    type: String,
+    enum: ["queued", "processing", "completed", "failed"],
+    default: "queued",
+    required: true,
+  })
+  status!: JobLifecycleStatus;
 
-  @Prop({ default: 0 })
-  progress: number;
+  @Prop({ type: Number, default: 0 })
+  progress!: number;
 
   @Prop({ type: [String], default: [] })
-  inputFileKeys: string[];
+  inputFileKeys!: string[];
 
-  @Prop()
+  @Prop({ type: String, required: false })
   resultFileKey?: string;
 
-  @Prop()
+  @Prop({ type: String, required: false })
   resultText?: string;
 
-  @Prop()
+  @Prop({ type: String, required: false })
   errorMessage?: string;
 
   @Prop({ type: Object, default: {} })
-  options: Record<string, string>;
+  options!: Record<string, string>;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

@@ -9,5 +9,5 @@ export class PdfRotateOptionsDto {
 export class PdfPasswordOptionsDto {
   @IsString()
   @Length(1, 128)
-  password: string;
+  password!: string;
 }
