@@ -51,6 +51,7 @@
     "@types/pdf-parse": "^1.1.4",
     "@types/bcrypt": "^5.0.2",
     "@types/passport-jwt": "^4.0.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "@vercel/node": "^3.2.29"
   }
 }
