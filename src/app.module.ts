@@ -9,7 +9,7 @@ import configuration, { AppConfig } from "@/config/configuration";
 import { JobsModule } from "@/modules/jobs/jobs.module";
 import { PdfToolsModule } from "@/modules/pdf-tools/pdf-tools.module";
 import { AiToolsModule } from "@/modules/ai-tools/ai-tools.module";
-import { AuthModule } from "@/modules/auth/auth.module";
+import { AuthModule } from "./modules/auth/auth.module";
 import { JwtAuthGuard } from "@/modules/auth/guards/jwt-auth.guard";
 import { RolesGuard } from "@/modules/auth/guards/roles.guard";
 

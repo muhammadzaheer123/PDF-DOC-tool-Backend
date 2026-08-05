@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { ConfigService } from "@nestjs/config";
 import { ValidationPipe } from "@nestjs/common";
 import helmet from "helmet";
-import { AppModule } from "@/app.module";
+import { AppModule } from "./app.module";
 import { AllExceptionsFilter } from "@/common/filters/all-exceptions.filter";
 import { ResponseInterceptor } from "@/common/response/response.interceptor";
 import { sanitizeRequestBody } from "@/common/middleware/sanitize-request-body.middleware";
