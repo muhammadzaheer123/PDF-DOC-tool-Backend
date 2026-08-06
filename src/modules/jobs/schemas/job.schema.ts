@@ -37,6 +37,15 @@ export class Job {
 
   @Prop({ type: Object, default: {} })
   options!: Record<string, string>;
+
+  @Prop({ type: String, required: false })
+  resultData?: string;
+
+  @Prop({ type: String, required: false })
+  resultFilename?: string;
+
+  @Prop({ type: String, required: false })
+  resultMimeType?: string;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

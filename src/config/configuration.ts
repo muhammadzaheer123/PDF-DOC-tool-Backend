@@ -3,6 +3,7 @@ export interface AppConfig {
   apiPrefix: string;
   corsOrigin: string;
   mongoUri: string;
+  backendPublicUrl: string;
   redis: {
     url?: string;
     host: string;
@@ -39,6 +40,11 @@ export default (): AppConfig => ({
   apiPrefix: process.env.API_PREFIX ?? "api/v1",
   corsOrigin: process.env.CORS_ORIGIN ?? "http://localhost:3000",
   mongoUri: process.env.MONGO_URI ?? "mongodb://localhost:27017/docuforge",
+  backendPublicUrl:
+    process.env.BACKEND_PUBLIC_URL ??
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : `http://localhost:${process.env.PORT ?? "4000"}`),
   redis: {
     url: process.env.REDIS_URL || undefined,
     host: process.env.REDIS_HOST ?? "localhost",
@@ -49,7 +55,8 @@ export default (): AppConfig => ({
     driver: "local",
     uploadDir: process.env.STORAGE_LOCAL_UPLOAD_DIR ?? "storage/uploads",
     resultDir: process.env.STORAGE_LOCAL_RESULT_DIR ?? "storage/results",
-    publicBaseUrl: process.env.STORAGE_PUBLIC_BASE_URL ?? "http://localhost:4000/files",
+    publicBaseUrl:
+      process.env.STORAGE_PUBLIC_BASE_URL ?? "http://localhost:4000/files",
   },
   maxFileSizeMb: parseInt(process.env.MAX_FILE_SIZE_MB ?? "50", 10),
   groq: {
